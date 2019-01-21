@@ -1,8 +1,14 @@
-const Welcome = () => import('../components/HelloWorld.vue')
+const ListUser = () => import('../view/users/list.vue')
+const ListProduct = () => import('../view/products/list.vue')
 
 export default [
   {
-    path: '/welcome',
-    component: Welcome
+    path: '/products',
+    name: 'products',
+    component: ListProduct
+  }, {
+    path: '/users',
+    name: 'users',
+    component: ListUser
   }
 ]
