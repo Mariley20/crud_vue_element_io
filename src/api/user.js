@@ -3,7 +3,7 @@ import axios from 'axios'
 const HOST = 'http://localhost:8000/api'
 
 export default {
-  get (payload = {}) {
+  get(payload = {}) {
     return new Promise((resolve, reject) => {
       axios
         .get(`${HOST}/users`)
@@ -12,7 +12,7 @@ export default {
     })
   },
 
-  getDetail (payload = {}) {
+  getDetail(payload = {}) {
     const userId = payload.userId || {}
     return new Promise((resolve, reject) => {
       axios
@@ -22,7 +22,7 @@ export default {
     })
   },
 
-  login (payload = {}) {
+  login(payload = {}) {
     const vForm = payload.vForm || {}
 
     return new Promise((resolve, reject) => {
@@ -36,7 +36,7 @@ export default {
     })
   },
 
-  verification (payload = {}) {
+  verification(payload = {}) {
     const params = payload.params || {}
 
     return new Promise((resolve, reject) => {
@@ -50,7 +50,7 @@ export default {
     })
   },
 
-  loginAuthy (payload = {}) {
+  loginAuthy(payload = {}) {
     const params = payload.params || {}
 
     return new Promise((resolve, reject) => {
@@ -64,7 +64,7 @@ export default {
     })
   },
 
-  post (payload = {}) {
+  post(payload = {}) {
     const vForm = payload.vForm || {}
 
     return new Promise((resolve, reject) => {
@@ -81,7 +81,7 @@ export default {
     })
   },
 
-  update (payload = {}) {
+  update(payload = {}) {
     const userId = payload.userId || {}
     const vForm = payload.vForm || {}
 
@@ -99,7 +99,7 @@ export default {
     })
   },
 
-  delete (payload = {}) {
+  delete(payload = {}) {
     const userId = payload.userId || {}
 
     return new Promise((resolve, reject) => {

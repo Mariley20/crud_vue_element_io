@@ -1,8 +1,8 @@
 const Welcome = () => import('../components/HelloWorld.vue')
 
-export default[
-  { 
+export default [
+  {
     path: '/welcome',
-    component: Welcome 
+    component: Welcome
   }
 ]

@@ -10,11 +10,11 @@ export const state = {
 export const getters = {}
 
 export const actions = {
-  replaceCurrentUser ({ commit }, payload) {
+  replaceCurrentUser({ commit }, payload) {
     commit(types.REPLACE_CURRENT_USER, payload)
   },
 
-  getUsers ({ commit }, payload) {
+  getUsers({ commit }, payload) {
     commit(types.REPLACE_LOADING_USERS, { status: true })
     userAPI
       .get(payload)
@@ -32,12 +32,14 @@ export const actions = {
       })
   },
 
-  getUser ({ commit }, payload) {
+  getUser({ commit }, payload) {
     return new Promise((resolve, reject) => {
       userAPI
         .getDetail(payload)
         .then(response => {
-          commit(types.REPLACE_CURRENT_USER, { currentUser: response.data.data })
+          commit(types.REPLACE_CURRENT_USER, {
+            currentUser: response.data.data
+          })
           resolve(response)
         })
         .catch(error => {
@@ -51,78 +53,84 @@ export const actions = {
     })
   },
 
-  createUser ({ commit }, payload) {
+  createUser({ commit }, payload) {
     return new Promise((resolve, reject) => {
-      userAPI.post(payload).then(response => {
-        this.commit('snackbar/UPDATE_SNACKBAR', {
-          status: true,
-          color: 'success',
-          text: 'The User was created successfully'
+      userAPI
+        .post(payload)
+        .then(response => {
+          this.commit('snackbar/UPDATE_SNACKBAR', {
+            status: true,
+            color: 'success',
+            text: 'The User was created successfully'
+          })
+          resolve(response)
         })
-        resolve(response)
-      }).catch(error => {
-        this.commit('snackbar/UPDATE_SNACKBAR', {
-          status: true,
-          color: 'error',
-          text:
-            'There was an error creating User, please try again later'
+        .catch(error => {
+          this.commit('snackbar/UPDATE_SNACKBAR', {
+            status: true,
+            color: 'error',
+            text: 'There was an error creating User, please try again later'
+          })
+          reject(error)
         })
-        reject(error)
-      })
     })
   },
 
-  updateUser ({ commit }, payload) {
+  updateUser({ commit }, payload) {
     return new Promise((resolve, reject) => {
-      userAPI.update(payload).then(response => {
-        this.commit('snackbar/UPDATE_SNACKBAR', {
-          status: true,
-          color: 'success',
-          text: 'The User was updated successfully'
+      userAPI
+        .update(payload)
+        .then(response => {
+          this.commit('snackbar/UPDATE_SNACKBAR', {
+            status: true,
+            color: 'success',
+            text: 'The User was updated successfully'
+          })
+          resolve(response)
         })
-        resolve(response)
-      }).catch(error => {
-        this.commit('snackbar/UPDATE_SNACKBAR', {
-          status: true,
-          color: 'error',
-          text:
-            'There was an error updating User, please try again later'
+        .catch(error => {
+          this.commit('snackbar/UPDATE_SNACKBAR', {
+            status: true,
+            color: 'error',
+            text: 'There was an error updating User, please try again later'
+          })
+          reject(error)
         })
-        reject(error)
-      })
     })
   },
 
-  deleteUser ({ commit }, payload) {
+  deleteUser({ commit }, payload) {
     return new Promise((resolve, reject) => {
-      userAPI.delete(payload).then(response => {
-        this.commit('snackbar/UPDATE_SNACKBAR', {
-          status: true,
-          color: 'success',
-          text: 'The User was deleted successfully'
+      userAPI
+        .delete(payload)
+        .then(response => {
+          this.commit('snackbar/UPDATE_SNACKBAR', {
+            status: true,
+            color: 'success',
+            text: 'The User was deleted successfully'
+          })
+          resolve(response)
         })
-        resolve(response)
-      }).catch(error => {
-        this.commit('snackbar/UPDATE_SNACKBAR', {
-          status: true,
-          color: 'error',
-          text:
-            'There was an error deleting User, please try again later'
+        .catch(error => {
+          this.commit('snackbar/UPDATE_SNACKBAR', {
+            status: true,
+            color: 'error',
+            text: 'There was an error deleting User, please try again later'
+          })
+          reject(error)
         })
-        reject(error)
-      })
     })
   }
 }
 
 export const mutations = {
-  [types.REPLACE_LOADING_USERS] (state, { status }) {
+  [types.REPLACE_LOADING_USERS](state, { status }) {
     state.loadingUsers = status
   },
-  [types.REPLACE_USERS] (state, { users }) {
+  [types.REPLACE_USERS](state, { users }) {
     state.users = users
   },
-  [types.REPLACE_CURRENT_USER] (state, { currentUser }) {
+  [types.REPLACE_CURRENT_USER](state, { currentUser }) {
     state.currentUser = currentUser
   }
 }
